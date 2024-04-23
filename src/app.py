@@ -6,7 +6,7 @@ records = []
 user_id = 0
 
 
-@app.route('/CRUD/users', methods=['POST'])
+@app.route('/users', methods=['POST'])
 def create_user():
     global user_id
     new_user = {
@@ -20,12 +20,12 @@ def create_user():
     return jsonify(new_user), 201
 
 
-@app.route('/CRUD/users', methods=['GET'])
-def get_users():
+@app.route('/users', methods=['GET'])
+def get_all_users():
     return jsonify(records)
 
 
-@app.route('/CRUD/users/<int:identifier>', methods=['GET'])
+@app.route('/users/<int:identifier>', methods=['GET'])
 def get_user(identifier):
     try:
         user_found = next(filter(lambda user: user['id'] == identifier, records))
@@ -34,7 +34,7 @@ def get_user(identifier):
         return jsonify({'message': 'User not found'}), 404
 
 
-@app.route('/CRUD/users/<int:identifier>', methods=['PUT'])
+@app.route('/users/<int:identifier>', methods=['PUT'])
 def update_user(identifier):
     try:
         user_found = next(filter(lambda user: user['id'] == identifier, records))
@@ -46,7 +46,7 @@ def update_user(identifier):
         return jsonify({'message': 'User not found'}), 404
 
 
-@app.route('/CRUD/users/<int:identifier>', methods=['DELETE'])
+@app.route('/users/<int:identifier>', methods=['DELETE'])
 def delete_user(identifier):
     try:
         user_found = next(filter(lambda user: user['id'] == identifier, records))
