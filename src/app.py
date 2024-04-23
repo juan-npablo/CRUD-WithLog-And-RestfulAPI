@@ -25,7 +25,7 @@ def get_users():
     return jsonify(records)
 
 
-@app.route('/CRUD/users/<int:user_id>', methods=['GET'])
+@app.route('/CRUD/users/<int:identifier>', methods=['GET'])
 def get_user(identifier):
     try:
         user_found = next(filter(lambda user: user['id'] == identifier, records))
@@ -34,7 +34,7 @@ def get_user(identifier):
         return jsonify({'message': 'User not found'}), 404
 
 
-@app.route('/CRUD/users/<int:user_id>', methods=['PUT'])
+@app.route('/CRUD/users/<int:identifier>', methods=['PUT'])
 def update_user(identifier):
     try:
         user_found = next(filter(lambda user: user['id'] == identifier, records))
@@ -46,7 +46,7 @@ def update_user(identifier):
         return jsonify({'message': 'User not found'}), 404
 
 
-@app.route('/CRUD/users/<int:user_id>', methods=['DELETE'])
+@app.route('/CRUD/users/<int:identifier>', methods=['DELETE'])
 def delete_user(identifier):
     try:
         user_found = next(filter(lambda user: user['id'] == identifier, records))
